@@ -1,0 +1,200 @@
+.experience-section {
+  padding: 80px 0;
+  background: var(--bg-dark);
+  min-height: 100vh;
+
+  .timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 0;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--primary),
+        transparent
+      );
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 60px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .timeline-dot {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px;
+        height: 20px;
+        background: var(--bg-dark);
+        border: 2px solid var(--primary);
+        border-radius: 50%;
+        z-index: 2;
+
+        .dot {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 8px;
+          height: 8px;
+          background: var(--primary);
+          border-radius: 50%;
+        }
+      }
+
+      .timeline-content {
+        width: calc(50% - 50px);
+        background: var(--bg-card);
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        position: relative;
+        margin-left: auto;
+
+        &:before {
+          content: '';
+          position: absolute;
+          top: 20px;
+          left: -15px;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 15px 15px 15px 0;
+          border-color: transparent var(--bg-card) transparent transparent;
+        }
+
+        .time-badge {
+          position: absolute;
+          top: -12px;
+          left: 20px;
+          background: var(--primary);
+          color: white;
+          padding: 4px 12px;
+          border-radius: 20px;
+          font-size: 0.9rem;
+          font-weight: 500;
+        }
+
+        h3 {
+          color: var(--text-primary);
+          font-size: 1.4rem;
+          margin-top: 15px;
+          margin-bottom: 5px;
+        }
+
+        h4 {
+          color: var(--primary);
+          font-size: 1.1rem;
+          margin-bottom: 15px;
+        }
+
+        p {
+          color: var(--text-secondary);
+          font-size: 1rem;
+          line-height: 1.6;
+          margin-bottom: 15px;
+        }
+
+        .tech-stack {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 8px;
+
+          .tech-tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+          }
+        }
+      }
+
+      &:nth-child(odd) {
+        .timeline-content {
+          margin-left: 0;
+          margin-right: auto;
+
+          &:before {
+            left: auto;
+            right: -15px;
+            border-width: 15px 0 15px 15px;
+            border-color: transparent transparent transparent var(--bg-card);
+          }
+
+          .time-badge {
+            left: auto;
+            right: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .timeline {
+      &:before {
+        left: 30px;
+      }
+
+      .timeline-item {
+        .timeline-dot {
+          left: 30px;
+        }
+
+        .timeline-content {
+          width: calc(100% - 80px);
+          margin-left: 80px;
+
+          &:before {
+            left: -15px;
+            border-width: 15px 15px 15px 0;
+            border-color: transparent var(--bg-card) transparent transparent;
+          }
+
+          .time-badge {
+            left: 20px;
+          }
+        }
+
+        &:nth-child(odd) {
+          .timeline-content {
+            margin-left: 80px;
+            margin-right: 0;
+
+            &:before {
+              left: -15px;
+              right: auto;
+              border-width: 15px 15px 15px 0;
+              border-color: transparent var(--bg-card) transparent transparent;
+            }
+
+            .time-badge {
+              left: 20px;
+              right: auto;
+            }
+          }
+        }
+      }
+    }
+  }
+} 
