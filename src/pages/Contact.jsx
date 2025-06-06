@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { toast } from 'react-hot-toast';
 import '../styles/pages/Contact.scss';
 import { personalInfo } from '../constants/global';
 
@@ -10,17 +11,14 @@ const Contact = () => {
     message: ''
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log(formData);
-  };
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
   };
 
   const containerVariants = {
@@ -41,6 +39,49 @@ const Contact = () => {
       transition: {
         duration: 0.5
       }
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    console.log("handleSubmit");
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: 'e3a4deca-2705-4db8-91fc-52dbafcb4962',
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          from_name: "Portfolio Contact Form",
+          redirect: false,
+          botcheck: false,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast.success('Message sent successfully!');
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          message: ''
+        });
+      } else {
+        throw new Error('Something went wrong!');
+      }
+    } catch (error) {
+      toast.error('Failed to send message. Please try again.');
+      console.error('Error:', error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -88,7 +129,7 @@ const Contact = () => {
 
           <motion.form 
             className="contact-form"
-            onSubmit={handleSubmit}
+            // onSubmit={handleSubmit}
             variants={itemVariants}
           >
             <div className="form-group">
@@ -100,6 +141,7 @@ const Contact = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
+                disabled={isSubmitting}
               />
             </div>
             <div className="form-group">
@@ -111,6 +153,7 @@ const Contact = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
+                disabled={isSubmitting}
               />
             </div>
             <div className="form-group">
@@ -122,15 +165,28 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 rows="6"
+                disabled={isSubmitting}
               />
             </div>
-            <motion.button
-              type="submit"
+            <motion.button 
+              type="submit" 
+              className={`submit-btn ${isSubmitting ? 'submitting' : ''}`}
+              disabled={isSubmitting}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="submit-btn"
+              onClick={handleSubmit}
             >
-              Send Message
+              {isSubmitting ? (
+                <>
+                  <span className="spinner"></span>
+                  Sending...
+                </>
+              ) : (
+                <>
+                  <i className="fas fa-paper-plane"></i>
+                  Send Message
+                </>
+              )}
             </motion.button>
           </motion.form>
         </motion.div>

@@ -1,30 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { skills } from '../constants/global';
 import '../styles/pages/Skills.scss';
-
-const skills = {
-  "Frontend": [
-    { name: "React", icon: "fab fa-react" },
-    { name: "JavaScript", icon: "fab fa-js" },
-    { name: "HTML5", icon: "fab fa-html5" },
-    { name: "CSS3", icon: "fab fa-css3-alt" },
-    { name: "Redux", icon: "fas fa-code" },
-    { name: "TypeScript", icon: "fas fa-code" }
-  ],
-  "Backend": [
-    { name: "Node.js", icon: "fab fa-node-js" },
-    { name: "Express", icon: "fas fa-server" },
-    { name: "MongoDB", icon: "fas fa-database" },
-    { name: "PostgreSQL", icon: "fas fa-database" },
-    { name: "REST API", icon: "fas fa-exchange-alt" }
-  ],
-  "Tools & Others": [
-    { name: "Git", icon: "fab fa-git-alt" },
-    { name: "AWS", icon: "fab fa-aws" },
-    { name: "GCP", icon: "fab fa-google" },
-    { name: "Docker", icon: "fab fa-docker" },
-  ]
-};
 
 const Skills = () => {
   const containerVariants = {
@@ -61,7 +38,7 @@ const Skills = () => {
           className="section-title"
           variants={cardVariants}
         >
-          SKILLS
+          SKILLS & TECHNOLOGIES
         </motion.h2>
 
         <div className="skills-container">
@@ -82,7 +59,13 @@ const Skills = () => {
                       scale: 1.05,
                       boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)"
                     }}
-                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ 
+                      duration: 0.5,
+                      delay: index * 0.1
+                    }}
                   >
                     <motion.div 
                       className="skill-icon"
@@ -102,7 +85,15 @@ const Skills = () => {
                           duration: 0.8,
                           delay: 0.2 + (categoryIndex * skillList.length + index) * 0.1
                         }}
-                      />
+                      >
+                        <motion.div 
+                          className="skill-progress"
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.5 }}
+                        />
+                      </motion.div>
                     </div>
                   </motion.div>
                 ))}

@@ -50,13 +50,17 @@ export const skills = {
     { name: "React.js", icon: "fab fa-react" },
     { name: "Next.js", icon: "fas fa-n" },
     { name: "Ionic React", icon: "fas fa-mobile-alt" },
-    { name: "React Native", icon: "fab fa-react" }
+    { name: "React Native", icon: "fab fa-react" },
+    { name: "Redux", icon: "fas fa-layer-group" },
   ],
   "Backend": [
     { name: "Node.js", icon: "fab fa-node-js" },
     { name: "Express.js", icon: "fas fa-server" },
     { name: "MySQL", icon: "fas fa-database" },
-    { name: "MongoDB", icon: "fas fa-database" }
+    { name: "MongoDB", icon: "fas fa-database" },
+    { name: "RESTful APIs", icon: "fas fa-exchange-alt" },
+    { name: "Socket.IO", icon: "fas fa-plug" },
+    { name: "JWT", icon: "fas fa-key" }
   ],
   "Cloud & DevOps": [
     { name: "AWS", icon: "fab fa-aws" },
@@ -66,10 +70,13 @@ export const skills = {
   ],
   "Tools & Others": [
     { name: "Google Vision API", icon: "fas fa-eye" },
-    { name: "Gemini", icon: "fas fa-robot" },
+    { name: "Gemini API", icon: "fas fa-robot" },
     { name: "Stripe", icon: "fab fa-stripe" },
     { name: "PayPal", icon: "fab fa-paypal" },
-    { name: "RESTful APIs", icon: "fas fa-exchange-alt" }
+    { name: "Agile/Scrum", icon: "fas fa-users-cog" },
+    { name: "TDD", icon: "fas fa-vial" },
+    { name: "Unit Testing", icon: "fas fa-check-circle" },
+    { name: "Performance Optimization", icon: "fas fa-tachometer-alt" }
   ]
 };
 

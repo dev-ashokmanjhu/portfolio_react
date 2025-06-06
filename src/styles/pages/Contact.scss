@@ -117,6 +117,10 @@
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
+      gap: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       &:hover {
         background: #2563EB;

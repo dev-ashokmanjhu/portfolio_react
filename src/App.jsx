@@ -2,7 +2,9 @@ import { Suspense, lazy, useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import LoadingSpinner from "./components/LoadingSpinner";
 import ThemeToggle from "./components/ThemeToggle";
+import Header from "./components/Header";
 import "./styles.scss";
+import { Toaster } from 'react-hot-toast';
 
 // Lazy load components
 const Hero = lazy(() => import("./pages/Hero"));
@@ -29,20 +31,45 @@ function App() {
   };
 
   return (
-    <AnimatePresence mode="wait">
-      <div className={`app-container ${theme}`}>
-        <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-        <Suspense fallback={<LoadingSpinner />}>
-          <Hero />
-          <About />
-          <Experience />
-          <Skills />
-          <Projects />
-          <Contact />
-          <Footer />
-        </Suspense>
-      </div>
-    </AnimatePresence>
+    <div className="app">
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          duration: 3000,
+          style: {
+            background: 'var(--bg-card)',
+            color: 'var(--text-primary)',
+          },
+          success: {
+            iconTheme: {
+              primary: '#10B981',
+              secondary: 'white',
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: '#EF4444',
+              secondary: 'white',
+            },
+          },
+        }}
+      />
+      <AnimatePresence mode="wait">
+        <div className={`app-container ${theme}`}>
+          <Header />
+          <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+          <Suspense fallback={<LoadingSpinner />}>
+            <Hero />
+            <About />
+            <Experience />
+            <Skills />
+            <Projects />
+            <Contact />
+            <Footer />
+          </Suspense>
+        </div>
+      </AnimatePresence>
+    </div>
   );
 }
 
