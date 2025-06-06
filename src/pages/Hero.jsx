@@ -4,7 +4,7 @@ import { personalInfo } from '../constants/global';
 import '../styles/pages/Hero.scss';
 
 const Hero = () => {
-  const codeString = "<FullStackDeveloper />";
+  const codeString = "<SoftwareDeveloper />";
   
   return (
     <section className="hero-section" id="home">
@@ -32,7 +32,7 @@ const Hero = () => {
             transition={{ duration: 0.5, delay: 0.5 }}
           >
             <h1>
-              Hi, I'm <span className="highlight">Ashok</span>
+              Hi, I'm <span className="highlight">{personalInfo.name}</span>
             </h1>
           </motion.div>
 
