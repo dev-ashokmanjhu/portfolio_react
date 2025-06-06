@@ -26,12 +26,12 @@ const Footer = () => {
               <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-linkedin"></i>
               </a>
-              <a href={socialLinks.twitter} target="_blank" rel="noopener noreferrer">
+              {/* <a href={socialLinks.twitter} target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-twitter"></i>
               </a>
               <a href={socialLinks.instagram} target="_blank" rel="noopener noreferrer">
                 <i className="fab fa-instagram"></i>
-              </a>
+              </a> */}
             </div>
           </motion.div>
 
