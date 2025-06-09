@@ -15,11 +15,17 @@ const Skills = () => {
   };
 
   const cardVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { 
+      scale: 0.8,
+      opacity: 0,
+      rotateX: -15
+    },
     visible: {
-      y: 0,
+      scale: 1,
       opacity: 1,
+      rotateX: 0,
       transition: {
+        type: "spring",
         duration: 0.5
       }
     }
@@ -57,43 +63,39 @@ const Skills = () => {
                     variants={cardVariants}
                     whileHover={{ 
                       scale: 1.05,
-                      boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)"
+                      rotateY: 5,
+                      rotateX: -5,
                     }}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial="hidden"
+                    whileInView="visible"
                     viewport={{ once: true }}
                     transition={{ 
-                      duration: 0.5,
-                      delay: index * 0.1
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 20
                     }}
                   >
-                    <motion.div 
-                      className="skill-icon"
-                      whileHover={{ rotate: 360 }}
-                      transition={{ duration: 0.6 }}
-                    >
-                      <i className={skill.icon}></i>
-                    </motion.div>
-                    <div className="skill-info">
-                      <h4>{skill.name}</h4>
-                      <motion.div
-                        className="skill-bar"
-                        initial={{ width: 0, opacity: 0 }}
-                        whileInView={{ width: "100%", opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ 
-                          duration: 0.8,
-                          delay: 0.2 + (categoryIndex * skillList.length + index) * 0.1
-                        }}
+                    <div className="skill-content">
+                      <motion.div 
+                        className="skill-icon"
+                        whileHover={{ rotate: 360 }}
+                        transition={{ duration: 0.6 }}
                       >
-                        <motion.div 
-                          className="skill-progress"
-                          initial={{ opacity: 0 }}
-                          whileInView={{ opacity: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: 0.5 }}
-                        />
+                        <i className={skill.icon}></i>
                       </motion.div>
+                      <h4>{skill.name}</h4>
+                      <motion.div 
+                        className="skill-shine"
+                        initial={{ x: "-100%", opacity: 0.5 }}
+                        animate={{ x: "100%", opacity: 0 }}
+                        transition={{
+                          repeat: Infinity,
+                          duration: 1.5,
+                          ease: "linear",
+                          delay: index * 0.1
+                        }}
+                      />
                     </div>
                   </motion.div>
                 ))}

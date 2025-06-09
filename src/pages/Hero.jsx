@@ -106,7 +106,7 @@ const Hero = () => {
                     <span></span>
                     <span></span>
                   </div>
-                  <div className="title">code.js</div>
+                  <div className="title">Developer.jsx</div>
                 </div>
                 <div className="code-content">
                   <div className="line-numbers">

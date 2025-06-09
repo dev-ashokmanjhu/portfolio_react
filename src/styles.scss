@@ -38,6 +38,9 @@
     --text-secondary: #94A3B8;
     --border-color: #475569;
     --input-bg: #334155;
+    --gradient-overlay: rgba(15, 23, 42, 0.9);
+    --gradient-secondary: rgba(30, 41, 59, 0.8);
+    --animated-bg-color: #1a237e;
   }
 
   // Light theme
@@ -50,6 +53,9 @@
     --text-secondary: #475569;
     --border-color: #E2E8F0;
     --input-bg: #F1F5F9;
+    --gradient-overlay: rgba(248, 250, 252, 0.9);
+    --gradient-secondary: rgba(241, 245, 249, 0.8);
+    --animated-bg-color: #E2E8F0;
   }
 }
 
@@ -61,7 +67,7 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 // Typography
